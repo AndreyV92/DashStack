@@ -1,0 +1,26 @@
+.loader-wrap {
+  width: 100%;
+}
+
+.loader-wrap--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px; /* чтобы под компонентом было место */
+}
+
+.loader {
+  display: inline-block;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.15);
+  border-top-color: rgba(0, 0, 0, 0.65);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

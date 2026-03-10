@@ -1,0 +1,78 @@
+.wrapper {
+  display: flex;
+  // justify-content: ;
+}
+
+.MyHeaderStyle {
+  height: 70px;
+  border: 1px solid black;
+  padding: 16px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerLeftPart {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.headerRightPart {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  line-height: 0.5;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 700;
+  }
+}
+
+.choise {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.bell {
+  position: absolute;
+}
+
+.bellWrap {
+  display: flex;
+  align-items: center;
+}
+
+.count {
+  display: flex;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgba(249, 60, 101);
+  font-size: 12px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  left: 15px;
+  bottom: 8px;
+}

@@ -1,0 +1,54 @@
+.SideBarStyle {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+
+  ul {
+    list-style: none;
+
+    a {
+      font-size: 14px;
+      font-weight: 600;
+      color: #202224;
+      padding-left: 5px;
+    }
+  }
+
+  ul:not(:last-child) {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    li {
+      padding-bottom: 15px;
+      :focus {
+        padding: 16px 45px;
+        border-radius: 6px;
+        background-color: #4880FF;
+      }
+    }
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 24px 0 30px 0;
+
+    span {
+      color: #4880FF;
+    }
+  }
+
+  h3 {
+    opacity: 0.6;
+    padding: 0 0 0 40px;
+    margin: 16px 0;
+  }
+
+  float: left;
+  text-align: left;
+  width: 240px;
+}
+
+.settings {
+  margin: 30px 0 100px 0;
+}
