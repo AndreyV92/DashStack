@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks/hooks";
-import { changeselectDate, fetchCoinsData, changeSelectCoin } from "../../app/slices/coins/coinsSlice";
+import {  fetchCoinsData, changeSelectCoin, changeStartYear, changeEndYear } from "../../app/slices/coins/coinsSlice";
 
 const Coin = () => {
-  const { coinsData, selectCoin, selectDate} = useAppSelector((state) => state.coins);
-
+  const { coinsData, selectCoin, startYear, endYear} = useAppSelector((state) => state.coins);
   const dispatch = useAppDispatch();
 
   const normalizeData =
@@ -18,8 +17,8 @@ const Coin = () => {
 
 
   useEffect(() => {
-    dispatch(fetchCoinsData(selectDate ?? "2020"));
-  }, [selectDate]);
+    dispatch(fetchCoinsData(startYear ?? "2020"));
+  }, [startYear]);
 
   return (
     <div style={{ display: "flex", gap: "10px" }}>
@@ -35,10 +34,27 @@ const Coin = () => {
           </option>
         ))}
       </select>
+
+      <span>C</span>
       <select
         style={{ border: "1px solid black" }}
-        value={selectDate}
-        onChange={(e) => dispatch(changeselectDate(e.target.value))}
+        value={startYear}
+        onChange={(e) => dispatch(changeStartYear(e.target.value))}
+      >
+        <option value="">Выберите год</option>
+        {Array.from(
+          { length: 100 },
+          (_, index) => new Date().getFullYear() - index,
+        ).map((date) => (
+          <option value={date}>{date}</option>
+        ))}
+      </select>
+
+      <span>-По</span>
+      <select
+        style={{ border: "1px solid black" }}
+        value={endYear}
+        onChange={(e) => dispatch(changeEndYear(e.target.value))}
       >
         <option value="">Выберите год</option>
         {Array.from(

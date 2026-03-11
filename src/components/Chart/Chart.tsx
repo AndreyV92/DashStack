@@ -14,7 +14,7 @@ import chartsSlice, {
 } from "../../app/slices/Chart/ChartSlice";
 
 const Chart = () => {
-  const { selectCoin, selectDate } = useAppSelector((state) => state.coins);
+  const { selectCoin, startYear } = useAppSelector((state) => state.coins);
 
   const dispatch = useAppDispatch();
 
@@ -40,15 +40,15 @@ const Chart = () => {
     console.log(selectCoin)
     dispatch(
       fetchChartsData({
-        startDate: `${selectDate}-01-01`,
-        endDate: `${selectDate}-02-01`,
+        startDate: `${startYear}-01-01`,
+        endDate: `${startYear}-02-01`,
         base: "USD",
         selectCoin: selectCoin,
       }),
     );
 
     console.log(chartsData);
-  }, [dispatch, selectDate, selectCoin]);
+  }, [dispatch, startYear, selectCoin]);
 
   return (
     <div style={{ width: "100%", height: "400px" }}>

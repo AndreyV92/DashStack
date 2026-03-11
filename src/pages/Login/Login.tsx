@@ -14,6 +14,9 @@ const Login = () => {
     password: "",
   });
 
+  const [isValid, setIsValid] = useState('false')
+  const [validValue, setValidValue] = useState('')
+
   const handleChangeValue = (
     field: string,
     e: React.ChangeEvent<HTMLInputElement>,
@@ -43,6 +46,15 @@ const Login = () => {
     } else {
       console.log("не отправлено");
     }
+
+    if(user.name.length <= 4) {
+      console.log("введите больше 4 символов");
+    }
+
+    if(user.password.length < 5) {
+      console.log("введите больше 4 символов");
+    }
+    
   };
 
   return (
@@ -75,6 +87,7 @@ const Login = () => {
             placeholder="Введите пароль"
           />
         </label>
+        <span style={{display: 'none'}}> {validValue} </span>
         <button className={cls.btn} type="submit">
           отправить
         </button>
