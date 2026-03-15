@@ -1,24 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks/hooks";
-import {  fetchCoinsData, changeSelectCoin, changeStartYear, changeEndYear } from "../../app/slices/coins/coinsSlice";
+import {
+  fetchCoinsData,
+  changeSelectCoin,
+  changeStartYear,
+  changeEndYear,
+} from "../../app/slices/coins/coinsSlice";
 
 const Coin = () => {
-  const { coinsData, selectCoin, startYear, endYear} = useAppSelector((state) => state.coins);
+  const { coinsData, selectCoin, startDate, endDate } = useAppSelector(
+    (state) => state.coins,
+  );
+  const { chartsData } = useAppSelector((state) => state.charts);
   const dispatch = useAppDispatch();
+
+  {
+    /* {Array.from(
+          { length: 100 },
+          (_, index) => new Date().getFullYear() - index,
+        ).map((date) => (
+          <option value={date}>{date}</option>
+        ))} */
+  }
+
+  // onChange={(e) => dispatch(changeStartYear(e.target.value))}
+
+
 
   const normalizeData =
     typeof coinsData === "object" && coinsData !== null
       ? Object.entries(coinsData?.rates)
       : [];
 
-      const price = normalizeData.find(
+  const price = normalizeData.find(
     ([fiatName]) => fiatName === selectCoin,
   )?.[1];
 
+  const normalizeChartsData =
+    typeof chartsData === "object" && chartsData !== null
+      ? Object.entries(chartsData?.rates)
+      : [];
+
+  const chartsStartPrice = normalizeChartsData.find(
+    ([fiatPrice]) => fiatPrice === startDate,
+  )?.[1];
+
+  const chartsEndPrice = normalizeChartsData.find(
+    ([fiatPrice]) => fiatPrice === endDate,
+  )?.[1];
+  // console.log(normalizeChartsData);
+  console.log(chartsStartPrice);
+  console.log(chartsEndPrice);
 
   useEffect(() => {
-    dispatch(fetchCoinsData(startYear ?? "2020"));
-  }, [startYear]);
+    dispatch(fetchCoinsData(startDate));
+  }, [startDate, endDate]);
 
   return (
     <div style={{ display: "flex", gap: "10px" }}>
@@ -36,40 +72,26 @@ const Coin = () => {
       </select>
 
       <span>C</span>
-      <select
+      <input 
+        type="date"
         style={{ border: "1px solid black" }}
-        value={startYear}
+        value={startDate}
         onChange={(e) => dispatch(changeStartYear(e.target.value))}
-      >
-        <option value="">Выберите год</option>
-        {Array.from(
-          { length: 100 },
-          (_, index) => new Date().getFullYear() - index,
-        ).map((date) => (
-          <option value={date}>{date}</option>
-        ))}
-      </select>
+      />
 
       <span>-По</span>
-      <select
+      <input 
+        type="date"
         style={{ border: "1px solid black" }}
-        value={endYear}
+        value={endDate}
         onChange={(e) => dispatch(changeEndYear(e.target.value))}
-      >
-        <option value="">Выберите год</option>
-        {Array.from(
-          { length: 100 },
-          (_, index) => new Date().getFullYear() - index,
-        ).map((date) => (
-          <option value={date}>{date}</option>
-        ))}
-      </select>
+      />
 
-      <span>Стоимость на данный год:</span>
+      {/* <span> {startDate}: </span>
+      {selectCoin && <span>{} $</span>}
 
-      {selectCoin && <span>{price?.toFixed(2)} $</span>}
-
-      
+      <span> {endDate}: </span>
+      {selectCoin && <span>{} $</span>} */}
     </div>
   );
 };

@@ -56,3 +56,27 @@ export type TUser = {
   serName: string,
   password: string,
 }
+
+
+
+export type THour = {
+  time: string[];
+  temperature_2m: number[];
+}
+
+export type TCity = {
+  latitude: number;
+  longitude: number;
+}
+
+export type TWeather = {
+  latitude: number;
+  longitude: number;
+  hourly: THour;
+}
+
+export type TCityes = {
+  name: string;
+  latitude: number;
+  longitude: number;
+}

@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
 import Login from "./pages/Login/Login";
+import Weather from "./pages/Weather/Weather";
 
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/Products" element={<Products />} />
           <Route path="/Favorites" element={<Favorites />} />
           <Route path="/Inbox" element={<Inbox />} />
+          <Route path="/Weather" element={<Weather />} />
         </Routes>
       </BrowserRouter>
       </Provider>

@@ -1,6 +1,8 @@
 import React from "react";
 
 import cls from './SideBar.module.scss'
+import { Link } from "react-router-dom";
+import Weather from "../../pages/Weather/Weather";
 
 const SideBar = () => {
   return (
@@ -31,6 +33,9 @@ const SideBar = () => {
       <h3>PAGES</h3>
 
       <ul>
+        <li>
+          <Link to="Weather">Weather</Link>
+        </li>
         <li>
           <a href="">Pricing</a>
         </li>

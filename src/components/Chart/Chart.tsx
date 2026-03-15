@@ -14,13 +14,13 @@ import chartsSlice, {
 } from "../../app/slices/Chart/ChartSlice";
 
 const Chart = () => {
-  const { selectCoin, startYear } = useAppSelector((state) => state.coins);
+  const { selectCoin, startDate, endDate } = useAppSelector((state) => state.coins);
 
   const dispatch = useAppDispatch();
 
   const { chartsData } = useAppSelector((state) => state.charts);
 
-
+console.log(chartsData)
   const normalizeData =
   chartsData?.rates
     ? Object.entries(chartsData.rates).map(([date, rate]) => ({
@@ -29,9 +29,6 @@ const Chart = () => {
       }))
     : [];
 
-  console.log(chartsData);
-  console.log(selectCoin);
-  console.log(normalizeData);
 
   useEffect(() => {
 
@@ -40,25 +37,32 @@ const Chart = () => {
     console.log(selectCoin)
     dispatch(
       fetchChartsData({
-        startDate: `${startYear}-01-01`,
-        endDate: `${startYear}-02-01`,
+        startDate: `${startDate}`,
+        endDate: `${endDate}`,
         base: "USD",
         selectCoin: selectCoin,
       }),
     );
 
     console.log(chartsData);
-  }, [dispatch, startYear, selectCoin]);
+  }, [dispatch, startDate, selectCoin, endDate]);
 
   return (
     <div style={{ width: "100%", height: "400px" }}>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={normalizeData}>
-          <XAxis dataKey="date" />
-          <YAxis />
+          <XAxis dataKey="date" fontSize={12} tick={{ fill: "#9a9a9a" }} />
+          <YAxis fontSize={12} tick={{ fill: "#9a9a9a" }} />
           <Tooltip />
-          <CartesianGrid stroke="#010101" />
-          <Line type="monotone" dataKey={selectCoin}  stroke="#3b09ee" />
+          <CartesianGrid stroke="#eee" strokeDasharray="4 4" />
+          <Line
+            type="monotone"
+            dataKey={selectCoin}
+            stroke="#4880FF"
+            strokeWidth={2}
+            dot={{ r: 3, fill: "#4880FF" }}
+            activeDot={{ r: 5 }}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
