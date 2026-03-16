@@ -65,6 +65,7 @@ export type THour = {
 }
 
 export type TCity = {
+  name?: string;
   latitude: number;
   longitude: number;
 }
@@ -75,8 +76,3 @@ export type TWeather = {
   hourly: THour;
 }
 
-export type TCityes = {
-  name: string;
-  latitude: number;
-  longitude: number;
-}

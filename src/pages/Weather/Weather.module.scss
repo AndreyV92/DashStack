@@ -1,0 +1,39 @@
+.wrapper {
+  margin: 20px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.city {
+  display: flex;
+  gap: 10px;
+}
+
+.select {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.todayDay {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.subTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.sevenDay {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
