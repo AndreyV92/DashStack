@@ -1,38 +1,40 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import Products from "./pages/Products";
-import Favorites from "./pages/Favorites";
 import Inbox from "./pages/Inbox";
-import { store } from './app/store/store';
+import { store } from "./app/store/store";
 import { Provider } from "react-redux";
 
-import { ToastContainer } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login/Login";
 import Weather from "./pages/Weather/Weather";
-
-
+import Films from "./pages/Films/Films";
+import Content from './components/Content/Content'
+import Todo from "./pages/Todo/Todo";
+import Settings from "./pages/Settings/Settings";
 
 function App() {
   return (
     <>
-    <Provider store={store}>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ToastContainer />
 
-      <ToastContainer    
-        // autoClose={5000}            
-                     
-      />
+          <Routes>
+            <Route path="/" element={<Dashboard />}>
+              <Route index element={<Content />} />
+              <Route path="Inbox" element={<Inbox />} />
+              <Route path="Weather" element={<Weather />} />
+              <Route path="SearchFilms" element={<Films />} />
+              <Route path="Todo" element={<Todo />} />
+              <Route path="Settings" element={<Settings />} />
+              
+              
+            </Route>
 
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Products" element={<Products />} />
-          <Route path="/Favorites" element={<Favorites />} />
-          <Route path="/Inbox" element={<Inbox />} />
-          <Route path="/Weather" element={<Weather />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="/Login" element={<Login />} />
+          </Routes>
+        </BrowserRouter>
       </Provider>
     </>
   );

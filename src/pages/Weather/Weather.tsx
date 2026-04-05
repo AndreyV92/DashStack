@@ -1,23 +1,26 @@
-import React, { useEffect, useState, type ChangeEvent } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks/hooks";
 import { fetchWeatherData } from "../../app/slices/weather/weatherSlice";
 import type { TCity } from "../../types";
 
-import cls from "./Weather.module.scss";
+import { TiWeatherSnow } from "react-icons/ti";
+import { SiAccuweather } from "react-icons/si";
 
-const cityes: TCity[] = [
+import cls from "./Weather.module.scss";
+import ButtonToBack from "../../components/ButtonToBack/ButtonToBack";
+import Select from "../../shared/ui/components/Select/Select";
+
+const cities: TCity[] = [
   { name: "Москва", latitude: 55.45, longitude: 37.37 },
   { name: "Санкт-Петербург", latitude: 59.57, longitude: 30.19 },
   { name: "Новосибирск", latitude: 55.01, longitude: 82.55 },
 ];
 
-const currentDate = new Date().toLocaleDateString();
-
 const Weather = () => {
   const dispatch = useAppDispatch();
   const { weatherData } = useAppSelector((state) => state.weather);
 
-  const [city, setCity] = useState<TCity | null>(cityes[0]);
+  const [city, setCity] = useState<TCity | null>(cities[0]);
 
   // const normalizeWeatherData =
   //   typeof weatherData === "object" && weatherData !== null
@@ -34,15 +37,11 @@ const Weather = () => {
   const date = normalizedWeather?.[0]?.time.split("T")[0];
   const temperature = normalizedWeather?.[0]?.temperature;
 
+  console.log
+
   const sevenDays = normalizedWeather
     ?.filter((item) => item.time.includes("07:00"))
     .slice(0, 7);
-  const transformDate = new Date().toLocaleString();
-
-  console.log(date);
-  console.log(transformDate);
-
-  // if(!normalizedWeather?.length) return 'ошибка'
 
   useEffect(() => {
     city &&
@@ -55,7 +54,7 @@ const Weather = () => {
   }, [city, dispatch]);
 
   const handleChangeCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedCity = cityes.find((city) => city.name === e.target.value);
+    const selectedCity = cities.find((city) => city.name === e.target.value);
 
     selectedCity && setCity(selectedCity);
   };
@@ -67,31 +66,48 @@ const Weather = () => {
       <div className={cls.city}>
         <p>Город: </p>
 
-        <select
-          className={cls.select}
+        <Select
+          classNames={[cls.select]}
           onChange={(e) => handleChangeCity(e)}
           value={city?.name || ""}
         >
-          {cityes.map((city) => (
+          {cities.map((city) => (
             <option key={city.name} value={city.name}>
               {city.name}
             </option>
           ))}
-        </select>
+        </Select>
       </div>
       <div className={cls.todayDay}>
-        <span>Прогноз на сегодня </span>{date}:
-        <span> {temperature} </span>
+        <span>Прогноз на сегодня </span>
+        {date}:
+        <span>
+          {temperature} C
+          {temperature !== undefined && temperature < 0 ? (
+            <TiWeatherSnow />
+          ) : (
+            <SiAccuweather />
+          )}
+        </span>
       </div>
 
       <h2 className={cls.subTitle}>Прогноз на неделю:</h2>
       <ul className={cls.sevenDay}>
         {sevenDays?.map((day, index) => (
           <li key={index}>
-            {day.time} <span>{day.temperature} C</span>
+            {day.time}
+            <span>
+              {day.temperature} C
+              {temperature !== undefined && temperature < 0 ? (
+                <TiWeatherSnow />
+              ) : (
+                <SiAccuweather />
+              )}
+            </span>
           </li>
         ))}
       </ul>
+      <ButtonToBack />
     </div>
   );
 };

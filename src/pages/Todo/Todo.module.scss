@@ -1,0 +1,37 @@
+.input_style {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.input_box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.btnAdd {
+  border: 1px solid rgb(0, 0, 0);
+  background-color: #0ed74a;
+  border-radius: 5px;
+}
+
+.btnDel {
+  border: 1px solid rgb(0, 0, 0);
+  background-color: #b41029;
+  border-radius: 5px;
+}
+
+.todo {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.editInput {
+  border: 1px solid black;
+}
+
+.cheked {
+  text-decoration: line-through gray;
+  
+}

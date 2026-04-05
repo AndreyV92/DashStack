@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks/hooks";
 import {
   fetchCoinsData,
@@ -6,6 +6,9 @@ import {
   changeStartYear,
   changeEndYear,
 } from "../../app/slices/coins/coinsSlice";
+import Input from "../../shared/ui/components/Input/Input";
+import cls from './Coin.module.scss'
+import Select from "../../shared/ui/components/Select/Select";
 
 const Coin = () => {
   const { coinsData, selectCoin, startDate, endDate } = useAppSelector(
@@ -32,9 +35,9 @@ const Coin = () => {
       ? Object.entries(coinsData?.rates)
       : [];
 
-  const price = normalizeData.find(
-    ([fiatName]) => fiatName === selectCoin,
-  )?.[1];
+  // const price = normalizeData.find(
+  //   ([fiatName]) => fiatName === selectCoin,
+  // )?.[1];
 
   const normalizeChartsData =
     typeof chartsData === "object" && chartsData !== null
@@ -58,31 +61,31 @@ const Coin = () => {
 
   return (
     <div style={{ display: "flex", gap: "10px" }}>
-      <select
-        style={{ border: "1px solid black" }}
+      <Select
+        classNames={[cls.border]}
         value={selectCoin}
         onChange={(e) => dispatch(changeSelectCoin(e.target.value))}
       >
         <option>Выберите монету</option>
-        {normalizeData?.map(([fiatName, fiatPrice]) => (
+        {normalizeData?.map(([fiatName]) => (
           <option id={fiatName} value={fiatName}>
             {fiatName}
           </option>
         ))}
-      </select>
+      </Select>
 
       <span>C</span>
-      <input 
+      <Input 
         type="date"
-        style={{ border: "1px solid black" }}
+        classNames={[cls.border]}
         value={startDate}
         onChange={(e) => dispatch(changeStartYear(e.target.value))}
       />
 
       <span>-По</span>
-      <input 
+      <Input 
         type="date"
-        style={{ border: "1px solid black" }}
+        classNames={[cls.border]}
         value={endDate}
         onChange={(e) => dispatch(changeEndYear(e.target.value))}
       />

@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import cardsSlice from '../slices/cards/cardsSlice'
-import coinsSlice  from '../slices/coins/coinsSlice'
+import coinsSlice from '../slices/coins/coinsSlice'
 import chartsSlice from '../slices/Chart/ChartSlice'
-import  weatherSlice  from '../slices/weather/weatherSlice'
+import weatherSlice from '../slices/weather/weatherSlice'
+import filmsSlice from '../slices/films/filmsSlice'
 
 
 
@@ -11,7 +12,9 @@ export const store = configureStore({
     cards: cardsSlice,
     coins: coinsSlice,
     charts: chartsSlice,
-    weather: weatherSlice
+    weather: weatherSlice,
+    films: filmsSlice,
+
   }
 })
 

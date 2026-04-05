@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import cls from "./Login.module.scss";
 import axios from "axios";
 import type { TUser } from "../../types";
+import ButtonToBack from "../../components/ButtonToBack/ButtonToBack";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -93,9 +94,7 @@ const Login = () => {
         </button>
       </form>
 
-      <button className={cls.btn} onClick={() => navigate(-1)}>
-        Назад
-      </button>
+      <ButtonToBack />
     </div>
   );
 };

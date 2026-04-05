@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import cls from "./Content.module.scss";
 // import type { TCard } from "../../types";
 import Card from "../Card/Card";

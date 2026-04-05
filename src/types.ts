@@ -16,7 +16,7 @@ export type TCoin = {
   rates: TRate
 }
 
- export type TCardProps = {
+export type TCardProps = {
   id: string | undefined;
   name: string | undefined;
   image: string | undefined;
@@ -42,11 +42,11 @@ export type TChartData = {
   base: string;
 }
 
-export type TChartParam = TChartData &{
+export type TChartParam = TChartData & {
   selectCoin: string
 }
 
-export type TChart = TChartData &{
+export type TChart = TChartData & {
   rates: TRateDate
 }
 
@@ -76,3 +76,21 @@ export type TWeather = {
   hourly: THour;
 }
 
+// Films
+
+export type TImage = {
+  url: string;
+  previewUrl?: string
+}
+
+export type TFilmResponce = {
+  docs: TFilm[]
+}
+
+export type TFilm = {
+  id: number;
+  name: string;
+  year: number;
+  description: string
+  poster: TImage
+}

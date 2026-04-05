@@ -37,7 +37,7 @@ export const weatherSlice = createSlice({
     });
     builder.addCase(fetchWeatherData.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.error.message ?? "ошибка подгрузки монет";
+      state.error = action.error.message ?? "ошибка загрузки данных о погоде";
       state.weatherData = null;
     });
     builder.addCase(fetchWeatherData.pending, (state) => {
